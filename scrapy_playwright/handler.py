@@ -32,6 +32,8 @@ from w3lib.encoding import html_body_declared_encoding, http_content_type_encodi
 from scrapy_playwright.headers import use_scrapy_headers
 from scrapy_playwright.page import PageMethod
 
+from playwright_stealth import stealth_async
+
 
 __all__ = ["ScrapyPlaywrightDownloadHandler"]
 
@@ -186,6 +188,9 @@ class ScrapyPlaywrightDownloadHandler(HTTPDownloadHandler):
 
         await ctx_wrapper.semaphore.acquire()
         page = await ctx_wrapper.context.new_page()
+
+        await stealth_async(page)
+
         self.stats.inc_value("playwright/page_count")
         total_page_count = self._get_total_page_count()
         logger.debug(
