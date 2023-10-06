@@ -2,6 +2,7 @@ import asyncio
 import platform
 import tempfile
 from pathlib import Path
+from unittest import IsolatedAsyncioTestCase
 from uuid import uuid4
 
 import pytest
@@ -160,8 +161,8 @@ class MixinTestCaseMultipleContexts:
 
             page = resp.meta["playwright_page"]
             storage_state = await page.context.storage_state()
-            await page.context.close()
             await page.close()
+            await page.context.close()
             cookie = storage_state["cookies"][0]
             assert cookie["name"] == "foo"
             assert cookie["value"] == "bar"
@@ -245,14 +246,14 @@ class MixinTestCaseMultipleContexts:
             assert cookie["domain"] == "example.org"
 
 
-class TestCaseMultipleContextsChromium(MixinTestCaseMultipleContexts):
+class TestCaseMultipleContextsChromium(IsolatedAsyncioTestCase, MixinTestCaseMultipleContexts):
     browser_type = "chromium"
 
 
-class TestCaseMultipleContextsFirefox(MixinTestCaseMultipleContexts):
+class TestCaseMultipleContextsFirefox(IsolatedAsyncioTestCase, MixinTestCaseMultipleContexts):
     browser_type = "firefox"
 
 
 @pytest.mark.skipif(platform.system() != "Darwin", reason="Test WebKit only on Darwin")
-class TestCaseMultipleContextsWebkit(MixinTestCaseMultipleContexts):
+class TestCaseMultipleContextsWebkit(IsolatedAsyncioTestCase, MixinTestCaseMultipleContexts):
     browser_type = "webkit"

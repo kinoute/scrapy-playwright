@@ -1,5 +1,41 @@
 # scrapy-playwright changelog
 
+
+### [v0.0.32](https://github.com/scrapy-plugins/scrapy-playwright/releases/tag/v0.0.32) (2023-09-04)
+
+* Connect to browser using CDP (#227)
+
+
+### [v0.0.31](https://github.com/scrapy-plugins/scrapy-playwright/releases/tag/v0.0.31) (2023-08-28)
+
+* Do not fail when getting referer header for debug log messages (#225)
+* Do not override headers with values from asset requests (#226)
+
+
+### [v0.0.30](https://github.com/scrapy-plugins/scrapy-playwright/releases/tag/v0.0.30) (2023-08-17)
+
+* Fix page_init_callback duplication (#222)
+* Bump minimum Python version from 3.7 to 3.8 (#223)
+
+
+### [v0.0.29](https://github.com/scrapy-plugins/scrapy-playwright/releases/tag/v0.0.29) (2023-08-11)
+
+* Set exc_info=True for warning log records (#219)
+* Invoke page_init_callback after setting route (#205)
+
+
+### [v0.0.28](https://github.com/scrapy-plugins/scrapy-playwright/releases/tag/v0.0.28) (2023-08-05)
+
+* Retry page.content if necessary (#218)
+
+
+### [v0.0.27](https://github.com/scrapy-plugins/scrapy-playwright/releases/tag/v0.0.27) (2023-07-24)
+
+* Override method only for navigation requests (#177)
+* Pass spider argument to _create_browser_context (#212)
+* await AsyncPlaywright.stop on close (#214)
+
+
 ### [v0.0.26](https://github.com/scrapy-plugins/scrapy-playwright/releases/tag/v0.0.26) (2023-02-01)
 
 * Fix logging (pass extra args instead of updating log record factory)
